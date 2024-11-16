@@ -1,5 +1,6 @@
 import psycopg2
 
+#check connection with the database
 try:
 
      conn = psycopg2.connect(     user="postgres",
@@ -16,6 +17,7 @@ except:
 
 cur = conn.cursor()
 
+#create person table in the database
 cur.execute("""
     CREATE TABLE Persons (
     PersonID int,
@@ -25,8 +27,10 @@ cur.execute("""
     City varchar(255)
 );""")
 
+#insert data in the table column
 cur.execute("""INSERT INTO Persons(PersonID, LastName, FirstName, Address, City)
-            Values (1, 'Cena', 'John', 'Malaysia', 'Kuala Lumpur');
+            Values (1, 'Cena', 'John', 'Malaysia', 'Kuala Lumpur'),
+            (2, 'Ramlee', 'Putih', 'Malaysia', 'Selayang');
             """)
 
 conn.commit()
